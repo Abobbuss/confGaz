@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float speed = 5.0f; // Скорость передвижения игрока
+    [SerializeField] private float _speed = 5.0f;
 
-    void Update()
+    private const string HorizontalInput = "Horizontal";
+    private const string VerticallInput = "Horizontal";
+
+    private void Update()
     {
-        // Получаем ввод от клавиатуры
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis(HorizontalInput);
+        float moveVertical = Input.GetAxis(VerticallInput);
 
-        // Определяем направление движения
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        if (moveHorizontal != 0 || moveVertical != 0)
+        {
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-        // Применяем скорость передвижения и deltaTime для плавности
-        transform.Translate(movement * speed * Time.deltaTime);
+            Move(movement);
+        }
     }
+
+    private void Move(Vector3 movement) => transform.Translate(movement * _speed * Time.deltaTime);
 }
