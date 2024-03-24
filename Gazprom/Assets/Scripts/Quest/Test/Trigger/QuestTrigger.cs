@@ -7,16 +7,6 @@ public class QuestTrigger : InteractableObject
 
     public event UnityAction StartingQuest;
 
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (CanInteract())
-                Interact();
-        }
-    }
-
     public override bool CanInteract() => _canInteract;
 
     public override void Interact()

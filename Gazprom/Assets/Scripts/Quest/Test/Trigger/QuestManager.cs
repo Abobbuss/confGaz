@@ -1,35 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(QuestTrigger))]
 public class QuestManager : MonoBehaviour
 {
     [SerializeField] private QuestTrigger _questTrigger;
-    [SerializeField] private Canvas _questCanvas;
-
-    private void Awake()
-    {
-        _questTrigger = GetComponent<QuestTrigger>();
-    }
-
-    private void Start()
-    {
-        _questCanvas.enabled = false;
-    }
+    [SerializeField] private Player _player;
+    [SerializeField] private UIQuest _uiQuest;
 
     private void OnEnable()
     {
         _questTrigger.StartingQuest += StartQuest;
+        _uiQuest.QuizOver += EndQuest;
     }
 
     private void OnDisable()
     {
         _questTrigger.StartingQuest -= StartQuest;
+        _uiQuest.QuizOver -= EndQuest;
     }
 
     private void StartQuest()
     {
-        _questCanvas.enabled = true;
+        _player.StopPlay();
+        _uiQuest.StartUIQuest();
+    }
+
+    private void EndQuest()
+    {
+        _player.StartPlaying();
     }
 }

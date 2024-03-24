@@ -13,7 +13,6 @@ public class GrabSystem : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Debug.Log("Fire");
             if (pickedItem)
             {
                 DropItem(pickedItem);

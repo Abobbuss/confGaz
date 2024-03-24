@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public UnityAction StopPlaying;
+    public UnityAction Playing;
+
+    private void Start()
     {
-        
+        StartPlaying();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopPlay()
     {
-        
+        StopPlaying?.Invoke();
+    }
+
+    public void StartPlaying()
+    {
+        Playing?.Invoke();
     }
 }
