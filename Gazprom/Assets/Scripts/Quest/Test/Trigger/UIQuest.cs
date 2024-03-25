@@ -54,12 +54,14 @@ public class UIQuest : MonoBehaviour
             SetButtonColors(_answerButtons[selectedAnswerIndex], Color.green);
 
             _nextQuestion.gameObject.SetActive(true);
+            _nextQuestion.onClick.RemoveAllListeners();
             _nextQuestion.onClick.AddListener(() => NextQuestion());
         }
     }
 
     private void NextQuestion()
     {
+        Debug.Log(_currentQuestionIndex);
         _currentQuestionIndex++;
 
         if (_currentQuestionIndex < _questionSet.questions.Length)

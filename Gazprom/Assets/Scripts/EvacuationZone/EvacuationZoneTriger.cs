@@ -12,10 +12,4 @@ public class EvacuationZoneTriger : MonoBehaviour
         if (other.TryGetComponent(out Player _))
             InEvacuationZone?.Invoke();
     }
-
-/*    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out Player _))
-            
-    }*/
 }
